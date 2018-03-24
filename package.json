@@ -1,7 +1,7 @@
 {
   "name": "ansible_introduction",
   "version": "1.0.0",
-  "description": "n Introduction to Server Configuration and Provisioning with Ansible",
+  "description": "An Introduction to Server Configuration and Provisioning with Ansible",
   "scripts": {
     "test": "grunt test",
     "start": "grunt serve",
