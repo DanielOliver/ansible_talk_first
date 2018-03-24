@@ -28,6 +28,7 @@ boxes/*
 /vagrant-spec.config.rb
 test/vagrant-spec/.vagrant/
 vagrant/.vagrant
+vagrantssh
 
 
 # Bundler/Rubygems
