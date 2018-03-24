@@ -27,6 +27,8 @@ boxes/*
 /website/build
 /vagrant-spec.config.rb
 test/vagrant-spec/.vagrant/
+vagrant/.vagrant
+
 
 # Bundler/Rubygems
 *.gem
@@ -64,3 +66,4 @@ doc/
 
 # Box storage for spec
 test/vagrant-spec/boxes/*.box
+vagrant/.vagrant/machines/default/virtualbox/index_uuid
