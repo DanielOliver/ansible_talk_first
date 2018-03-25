@@ -13,6 +13,29 @@
 	<!-- Theme used for syntax highlighting of code -->
 	<link rel="stylesheet" href="lib/css/zenburn.css">
 
+
+	<style>
+		.reveal h1 {
+			font-size: 3.0em;
+		}
+
+		.reveal h2 {
+			font-size: 2.4em;
+		}
+
+		.reveal h3 {
+			font-size: 1.7em;
+		}
+
+		.reveal h4 {
+			font-size: 1.6em;
+		}
+
+		.reveal p {
+			font-size: 1.4em;
+		}
+	</style>
+
 	<!-- Printing and PDF exports -->
 	<script>
 		var link = document.createElement('link');
@@ -27,15 +50,27 @@
 	<div class="reveal">
 		<div class="slides">
 			<section data-background="#F2F2F2">
-				<h2>An Introduction to Server</h2>
+				<h3>An Introduction to Server</h3>
 				<h1>Configuration</h1>
-				<h2>and</h2>
+				<h3>and</h3>
 				<h1>Provisioning</h1>
 				<h2>with Ansible</h2>
 			</section>
 
+			<section data-background="#333333">
+				<h1>Daniel Oliver</h1>
+				<h2>olivercoding.com</h2>
+				<h3>Twitter: @a_software_dev</h3>
+				<h3>Github: danieloliver</h3>
+				<img style="background-color: rgba(255, 255, 255, 0); border:none; box-shadow: 0 0 0 rgba(0,0,0,0);" data-src="assets/Asset_7.png">
+			</section>
 
-			<section data-markdown="slides/main.md" data-separator="---" data-separator-notes="^Note:"></section>
+			<section data-background="#f0f0f0">
+				<h2>The problem is that <br/> we have lost our servers.</h2>
+			</section>
+
+
+			<section data-markdown="slides/problem.md" data-separator="---" data-separator-notes="^Note:"></section>
 		</div>
 	</div>
 
@@ -51,7 +86,7 @@
 			height: 1080,
 			margin: 0.1,
 			minScale: 0.2,
-			maxScale: 2.0,
+			maxScale: 4.0,
 			dependencies: [
 				{ src: 'plugin/markdown/marked.js' },
 				{ src: 'plugin/markdown/markdown.js' },
@@ -59,10 +94,10 @@
 				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
 			]
 		});
-		Reveal.configure({ 
-			showSlideNumber: 'speaker', 
-			slideNumber: true, 
-			slideNumber: 'c/t' 
+		Reveal.configure({
+			showSlideNumber: 'speaker',
+			slideNumber: true,
+			slideNumber: 'c/t'
 		});
 	</script>
 </body>
