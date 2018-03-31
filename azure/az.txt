@@ -1,0 +1,4 @@
+az login
+az group create --name Ansible --location eastus
+az vm create --resource-group Ansible --admin-username daniel --name ansiblevm1 --image UbuntuLTS --generate-ssh-keys --verbose 
+

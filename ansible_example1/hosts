@@ -1,1 +1,1 @@
-localhost ansible_host=default
+ansiblevm1 ansible_ssh_user=daniel ansible_host=ansiblevm1.eastus.cloudapp.azure.com
