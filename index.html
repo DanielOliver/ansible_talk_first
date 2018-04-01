@@ -576,6 +576,26 @@ ansiblevm2 is the name of this server in the inventory file
                 </aside>
             </section>
 
+            <section>
+                <h2>Environments</h2>
+                <p>So far you've seen "all" or the "ansiblevm1" virtual machine name used to identify servers in ad-hoc commands
+                    and playbooks.</p>
+                <p>Inventory can also be grouped for conenvience.</p>
+                <pre class="ini">
+                        <code data-trim data-noescape>[DBServer]
+ansiblevm1   ansible_ssh_user=daniel   ansible_host=ansiblevm1.eastus.cloudapp.azure.com
+[WebServers]
+ansiblevm2   ansible_ssh_user=daniel   ansible_host=ansiblevm2.eastus.cloudapp.azure.com
+ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.azure.com</code>
+                </pre>
+                <p>Environments can be groups in inventory.
+                    <br/> Or, make separate inventory files for each environment.</p>
+                <aside class="notes">
+                    Your choice on how to separate Environments: separate files or groups.
+                </aside>
+            </section>
+
+
 
         </div>
     </div>
