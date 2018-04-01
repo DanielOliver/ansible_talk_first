@@ -34,6 +34,15 @@
 		.reveal p {
 			font-size: 1.4em;
 		}
+
+		.reveal pre code {
+			font-size: 1.3em;
+			line-height: 1.2;
+		}
+
+		.reveal pre {
+			width: 100%;
+		}
 	</style>
 
 	<!-- Printing and PDF exports -->
@@ -201,6 +210,56 @@
 				<aside class="notes">
 					There are many great tools. You have to figure out what works best for you. "Chef, Puppet, Salt"
 				</aside>
+			</section>
+
+
+
+			<section data-background="#eAeAeA">
+				<h1>Ansible</h1>
+				<p>
+					<b>For when we don't want 5000 line shell scripts.</b>
+				</p>
+				<img data-src="assets/unixsystem.gif" height="411" width="750">
+				<aside class="notes">
+					There are many great tools. You have to figure out what works best for you. "Chef, Puppet, Salt"
+				</aside>
+			</section>
+
+			<section>
+				<h3>It's demo time!</h3>
+				<br/>
+				<p> Actually, everything is pre-recorded for my sanity with the following 3 VMs</p>
+				<pre class="powershell">
+					<code data-trim data-noescape>PS C:\Users\Daniel> az network public-ip list --query '[].{IPAddress: ipAddress, FQDN: dnsSettings.fqdn, Name: name}' --output table
+IPAddress      FQDN                                  Name
+-------------  ------------------------------------  ------------------
+13.90.245.94   ansiblevm1.eastus.cloudapp.azure.com  ansiblevm1PublicIP
+52.168.111.32  ansiblevm2.eastus.cloudapp.azure.com  ansiblevm2PublicIP
+13.90.251.252  ansiblevm3.eastus.cloudapp.azure.com  ansiblevm3PublicIP
+PS C:\Users\Daniel></code>					
+				</pre>
+				<p>
+					<i>Note: these VMs shouldn't be publicly accessible.</i>
+				</p>
+			</section>
+			<section>
+				<h3>Ad-Hoc Command</h3>
+				<p>ansible all -m ping</p>
+				<pre class="bash" style="display: inline-block; margin: 0px 0px 0px 0px;">
+						<code style="max-height:100%;" data-trim data-noescape>doliver@DESKTOP-JGPLO92:/mnt/c/Users/Daniel/Development/ansible_introduction/ansible_example1$ ansible all -m ping
+ansiblevm1 | SUCCESS => {
+	"changed": false,
+	"ping": "pong"
+}
+ansiblevm2 | SUCCESS => {
+	"changed": false,
+	"ping": "pong"
+}
+ansiblevm3 | SUCCESS => {
+	"changed": false,
+	"ping": "pong"
+}</code>					
+					</pre>
 			</section>
 		</div>
 	</div>
