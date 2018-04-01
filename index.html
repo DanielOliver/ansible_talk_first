@@ -58,6 +58,9 @@
 <body>
     <div class="reveal">
         <div class="slides">
+
+            <!-- BEGIN INTRODUCTION -->
+
             <section data-background="#F2F2F2">
                 <h3>An Introduction to Server</h3>
                 <h1>Configuration</h1>
@@ -77,7 +80,7 @@
                 </aside>
             </section>
 
-
+            <!-- BEGIN PROBLEM -->
 
             <section data-background="#eAeAeA">
                 <h2>The problems</h2>
@@ -161,7 +164,7 @@
                 </aside>
             </section>
 
-
+            <!-- BEGIN INFRASTRUCTURE AS CODE -->
 
             <section data-background="#eAeAeA">
                 <h1>Infrastructure AS Code</h1>
@@ -203,7 +206,7 @@
                 </aside>
             </section>
 
-
+            <!-- BEGIN Ansible -->
 
             <section data-background="#eAeAeA">
                 <h1>Ansible</h1>
@@ -453,7 +456,7 @@ ansiblevm1                 : ok=5    changed=0    unreachable=0    failed=0</cod
     apt:
       name: dotnet-sdk-2.1.4
       state: present</code>
-                    </pre>
+                </pre>
                 <aside class="notes">
                     There's a lot going on here. I removed whitespace so it fits on the screen.
                     <br/> Notice the bash commands.
@@ -465,14 +468,44 @@ ansiblevm1                 : ok=5    changed=0    unreachable=0    failed=0</cod
                 <p>Ansible code can be declarative, but it can also be imperative when needed.</p>
                 <p>And there is an Ansible Module for almost anything you want.</p>
                 <img data-src="assets/unlimitedpower.gif" height="405" width="720">
+                <aside class="notes">
+                    In the end, this is still code.
+                </aside>
             </section>
 
-
+            <!-- BEGIN SERVER PROVISIONING -->
 
             <section data-background="#eAeAeA">
                 <h1>Server Provisioning</h1>
-
+                <p>Server setup documentation is how to create the server from scratch including all installed programs, security
+                    settings, configuration, etc.</p>
+                <aside class="notes">
+                    So far I've shown how to use Ansible to setup applications.
+                </aside>
             </section>
+
+            <section>
+                <p>So far, I've shown how to install programs.
+                    <br/> Checking dotnet version with ad-hoc commands shows this:
+                </p>
+                <pre class="bash">
+                    <code style="max-height:100%" data-trim data-noescape>$ ansible all -m shell -a "dotnet --version"
+ansiblevm1 | SUCCESS | rc=0 >>
+2.1.4
+
+ansiblevm3 | SUCCESS | rc=0 >>
+2.1.4
+
+ansiblevm2 | SUCCESS | rc=0 >>
+2.1.4</code>
+                </pre>
+                <p>Ad-hoc commands are useful for gathering information on existing servers.
+                </p>
+                <aside class="notes">
+                    So what comes next after installing software?
+                </aside>
+            </section>
+
         </div>
     </div>
 
