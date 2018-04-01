@@ -597,6 +597,17 @@ ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.a
             </section>
 
             <section>
+                <h2>Sensitive Variables</h2>
+                <p>Configuration variables usually hold sensitive information: passwords, keys.
+                    <br/> Ansible-Vault can help protect variables in source control.
+                </p>
+                <img data-src="assets/ansiblevault.gif" height="512" width="979">
+                <aside class="notes">
+                    The recording there is a little small. What's happening here is that a YAML file is being encrypted.
+                </aside>
+            </section>
+
+            <section>
                 <h2>Variables Summary</h2>
                 <p>Variables are the basis for configuration and can be grouped by many ways, and come from many sources.</p>
                 <br/>
@@ -606,6 +617,14 @@ ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.a
                 </aside>
             </section>
 
+            <!-- BEGIN WHEN -->
+
+            <section data-background="#eAeAeA">
+                <h2>When does Ansible make sense?</h2>
+                <aside class="notes">
+                    When Ansible makes sense is different from when Infrastructure as Code makes sense.
+                </aside>
+            </section>
 
         </div>
     </div>
