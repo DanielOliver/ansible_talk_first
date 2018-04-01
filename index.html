@@ -230,7 +230,7 @@
 				<br/>
 				<p> Actually, everything is pre-recorded for my sanity with the following 3 VMs</p>
 				<pre class="powershell">
-					<code data-trim data-noescape>PS C:\Users\Daniel> az network public-ip list --query '[].{IPAddress: ipAddress, FQDN: dnsSettings.fqdn, Name: name}' --output table
+					<code style="max-height:100%" data-trim data-noescape>PS C:\Users\Daniel> az network public-ip list --query '[].{IPAddress: ipAddress, FQDN: dnsSettings.fqdn, Name: name}' --output table
 IPAddress      FQDN                                  Name
 -------------  ------------------------------------  ------------------
 13.90.245.94   ansiblevm1.eastus.cloudapp.azure.com  ansiblevm1PublicIP
@@ -241,12 +241,17 @@ PS C:\Users\Daniel></code>
 				<p>
 					<i>Note: these VMs shouldn't be publicly accessible.</i>
 				</p>
+				<aside class="notes">
+					Three VMs is a good sample size.
+					<br/> These VMs have been deleted, so it's probably fine.
+				</aside>
 			</section>
+
 			<section>
 				<h3>Ad-Hoc Command</h3>
 				<p>ansible all -m ping</p>
-				<pre class="bash" style="display: inline-block; margin: 0px 0px 0px 0px;">
-						<code style="max-height:100%;" data-trim data-noescape>doliver@DESKTOP-JGPLO92:/mnt/c/Users/Daniel/Development/ansible_introduction/ansible_example1$ ansible all -m ping
+				<pre class="bash" >
+						<code style="max-height:100%" data-trim data-noescape>doliver@DESKTOP-JGPLO92:/mnt/c/Users/Daniel/Development/ansible_introduction/ansible_example1$ ansible all -m ping
 ansiblevm1 | SUCCESS => {
 	"changed": false,
 	"ping": "pong"
@@ -260,7 +265,25 @@ ansiblevm3 | SUCCESS => {
 	"ping": "pong"
 }</code>					
 					</pre>
+				<aside class="notes">
+					Ansible also supports ad-hoc commands for management of servers
+				</aside>
 			</section>
+
+			<section>
+				<h3>Ad-Hoc Command Explained</h3>
+				<p>Ansible configuration includes an "inventory" of the servers</p>
+				<pre class="ini">
+					<code data-trim data-noescape>ansiblevm1   ansible_ssh_user=daniel   ansible_host=ansiblevm1.eastus.cloudapp.azure.com
+ansiblevm2   ansible_ssh_user=daniel   ansible_host=ansiblevm2.eastus.cloudapp.azure.com
+ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.azure.com</code>					
+					</pre>
+				<aside class="notes">
+					TADA, this is all you need to see. I just pinged 3 servers with one command.
+				</aside>
+			</section>
+
+
 		</div>
 	</div>
 
