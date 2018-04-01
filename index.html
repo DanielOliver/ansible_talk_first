@@ -502,9 +502,80 @@ ansiblevm2 | SUCCESS | rc=0 >>
                 <p>Ad-hoc commands are useful for gathering information on existing servers.
                 </p>
                 <aside class="notes">
-                    So what comes next after installing software?
+                    This is half the battle. Installing programs, updating programs, and taking inventory of installed programs is a lot of work
+                    and time.
+                    <br/> So what comes next after installing software?
                 </aside>
             </section>
+
+            <!-- BEGIN SERVER CONFIGURATION -->
+
+            <section data-background="#eAeAeA">
+                <h1>Server Configuration</h1>
+                <p>Environment configuration documentation is how the server should be setup for each environment:
+                    <br/> development, test, user-acceptance-testing, production, etc.</p>
+                <aside class="notes">
+                    So far I've shown how to use Ansible to setup applications.
+                </aside>
+            </section>
+
+            <section>
+                <h2>Variables</h2>
+                <p>Variables can come from:</p>
+                <ul>
+                    <li>Inventory</li>
+                    <li>Playbooks</li>
+                    <li>Included Files</li>
+                    <li>Discovered system facts, such as hostname.</li>
+                </ul>
+                <br/>
+                <p>Variables are implicit if system facts, explicit if user-defined</p>
+                <aside class="notes">
+                    Configuration is made up by composing variables.
+                </aside>
+            </section>
+
+            <section>
+                <h2>Variables in template commands</h2>
+                <p>Putting a line in a file with a template</p>
+                <pre class="bash">
+                    <code style="max-height:100%" data-trim data-noescape>$ ansible all -m lineinfile -a "path=~/test.txt state=present create=true line=\"{{ inventory_hostname }} is the 
+name of this server in the inventory file\""
+ansiblevm3 | SUCCESS => {
+    "backup": "",
+    "changed": true,
+    "msg": "line added"
+}
+...</code>
+                </pre>
+                <p>Reading the line from that file</p>
+                <pre class="bash">
+                        <code style="max-height:100%" data-trim data-noescape>$ ansible all -m shell -a "cat ~/test.txt"
+ansiblevm1 | SUCCESS | rc=0 >>
+ansiblevm1 is the name of this server in the inventory file
+
+ansiblevm2 | SUCCESS | rc=0 >>
+ansiblevm2 is the name of this server in the inventory file
+...</code>
+                </pre>
+                <aside class="notes">
+                    Ansible uses the Python templating library "Jinja" to template files and strings.
+                </aside>
+            </section>
+
+            <section>
+                <h2>Setting Variables</h2>
+                <p>Variables such as a database connection string may be placed with these modules and more:</p>
+                <ul>
+                    <li>LineInFile - Ensures a line matching a regex pattern exists in a given file.</li>
+                    <li>Template - Templates a file, and places it on the remote server.</li>
+                    <li>ini_file - Sets INI settings</li>
+                </ul>
+                <aside class="notes">
+                    Environment configuration is a mix of lines in files, templated files, and absence of files in other places.
+                </aside>
+            </section>
+
 
         </div>
     </div>
