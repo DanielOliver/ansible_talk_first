@@ -236,7 +236,7 @@ IPAddress      FQDN                                  Name
 13.90.245.94   ansiblevm1.eastus.cloudapp.azure.com  ansiblevm1PublicIP
 52.168.111.32  ansiblevm2.eastus.cloudapp.azure.com  ansiblevm2PublicIP
 13.90.251.252  ansiblevm3.eastus.cloudapp.azure.com  ansiblevm3PublicIP
-PS C:\Users\Daniel></code>					
+PS C:\Users\Daniel></code>
 				</pre>
 				<p>
 					<i>Note: these VMs shouldn't be publicly accessible.</i>
@@ -250,7 +250,7 @@ PS C:\Users\Daniel></code>
 			<section>
 				<h3>Ad-Hoc Command</h3>
 				<p>ansible all -m ping</p>
-				<pre class="bash" >
+				<pre class="bash">
 						<code style="max-height:100%" data-trim data-noescape>doliver@DESKTOP-JGPLO92:/mnt/c/Users/Daniel/Development/ansible_introduction/ansible_example1$ ansible all -m ping
 ansiblevm1 | SUCCESS => {
 	"changed": false,
@@ -263,25 +263,87 @@ ansiblevm2 | SUCCESS => {
 ansiblevm3 | SUCCESS => {
 	"changed": false,
 	"ping": "pong"
-}</code>					
-					</pre>
+}</code>
+				</pre>
 				<aside class="notes">
-					Ansible also supports ad-hoc commands for management of servers
+					Ansible also supports ad-hoc commands for management of servers. Because sometimes you got to.
 				</aside>
 			</section>
 
 			<section>
-				<h3>Ad-Hoc Command Explained</h3>
-				<p>Ansible configuration includes an "inventory" of the servers</p>
+				<h3>Ad-Hoc Command Explained - Part 1.</h3>
+				<p>Ansible configuration includes an "inventory" of the servers.</p>
 				<pre class="ini">
 					<code data-trim data-noescape>ansiblevm1   ansible_ssh_user=daniel   ansible_host=ansiblevm1.eastus.cloudapp.azure.com
 ansiblevm2   ansible_ssh_user=daniel   ansible_host=ansiblevm2.eastus.cloudapp.azure.com
-ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.azure.com</code>					
-					</pre>
+ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.azure.com</code>
+				</pre>
+				<p>Inventories can be dynamic too.</p>
 				<aside class="notes">
-					TADA, this is all you need to see. I just pinged 3 servers with one command.
+					For demo purposes, this is a static inventory. And honestly, static inventories usually suffice.
 				</aside>
 			</section>
+
+			<section>
+				<h3>Ad-Hoc Command Explained - Part 2.</h3>
+				<p>Ansible connects using SSH, SCP, and SFTP.</p>
+				<p>An example from "ansible all -m ping" looks like this.</p>
+				<pre class="bash">
+						<code data-trim data-noescape>ssh -i /mnt/c/Users/Daniel/.ssh/id_rsa -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no \
+	-o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no \
+	-o User=daniel -o ConnectTimeout=10 ansiblevm3.eastus.cloudapp.azure.com '/bin/sh -c '"'"'echo ~ &AMP;&AMP; sleep 0'"'"''</code>
+				</pre>
+
+				<p>Simplified</p>
+				<pre class="bash">
+					<code data-trim data-noescape>ssh -i /mnt/c/Users/Daniel/.ssh/id_rsa daniel@ansiblevm1.eastus.cloudapp.azure.com</code>
+				</pre>
+				<aside class="notes">
+					All Ansible needs is Python installed, and access.
+				</aside>
+			</section>
+
+			<section>
+				<h3>Ad-Hoc Command Explained - Part 3.</h3>
+				<p>Ansible configuration is simple to start with.</p>
+				<pre class="ini">
+						<code data-trim data-noescape>[ssh_connection]
+ssh_args = -i "/mnt/c/Users/Daniel/.ssh/id_rsa"
+
+[defaults]
+inventory = hosts
+host_key_checking = False</code>
+					</pre>
+				<p>
+					<i>Note: "host_key_checking = False" may not be a great idea.</i>
+				</p>
+				<aside class="notes">
+					Configuration is fairly simple.
+					<br/> Now you've probably noticed something here. This is agentless and I'm running it on my computer.
+				</aside>
+			</section>
+
+			<section>
+					<h3>Ad-Hoc Command Explained - Part 4.</h3>
+					<p>ansible all -m ping</p>
+					<ul>
+						<li>"ansible" = command</li>
+						<li>"all" = servers in inventory to run command against</li>
+						<li>"-m" = Ansible module flag</li>
+						<li>"ping" = Ansible module</li>
+					</ul>
+					<pre class="bash">
+							<code style="max-height:100%" data-trim data-noescape>ansiblevm1 | SUCCESS => {
+	"changed": false,
+	"ping": "pong"
+}</code>
+					</pre>
+					<p>When each command runs, it's going to tell you if it changed anything on the server.</p>
+					<aside class="notes">
+						There are a lot of Ansible Modules.
+					</aside>
+				</section>
+
 
 
 		</div>
