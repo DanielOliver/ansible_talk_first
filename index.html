@@ -216,6 +216,7 @@
                 <img data-src="assets/unixsystem.gif" height="411" width="750">
                 <aside class="notes">
                     There are many great tools. You have to figure out what works best for you. "Chef, Puppet, Salt"
+                    <br/> Ansible is from Redhat, who support RedHat Linux.
                 </aside>
             </section>
 
@@ -485,7 +486,7 @@ ansiblevm1                 : ok=5    changed=0    unreachable=0    failed=0</cod
             </section>
 
             <section>
-                <p>So far, I've shown how to install programs.
+                <p>So far, I've shown how to install programs with Ansible.
                     <br/> Checking dotnet version with ad-hoc commands shows this:
                 </p>
                 <pre class="bash">
@@ -529,7 +530,7 @@ ansiblevm2 | SUCCESS | rc=0 >>
                     <li>Discovered system facts, such as hostname.</li>
                 </ul>
                 <br/>
-                <p>Variables are implicit if system facts, explicit if user-defined</p>
+                <p>System Variables are implicit. User-defined variables must be explicitly defined.</p>
                 <aside class="notes">
                     Configuration is made up by composing variables.
                 </aside>
@@ -595,6 +596,15 @@ ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.a
                 </aside>
             </section>
 
+            <section>
+                <h2>Variables Summary</h2>
+                <p>Variables are the basis for configuration and can be grouped by many ways, and come from many sources.</p>
+                <br/>
+                <p>How variables are organized can be flexible, and will depend upon your organization.</p>
+                <aside class="notes">
+                    All the ways to configure variables in Ansible is a complex topic and varies based upon your use.
+                </aside>
+            </section>
 
 
         </div>
