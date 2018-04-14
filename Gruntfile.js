@@ -21,6 +21,28 @@ module.exports = function(grunt) {
 		qunit: {
 			files: [ 'test/*.html' ]
 		},
+		copy: {
+			build: {
+			  cwd: '.',
+			  src: [
+				  'index.html',
+				  'assets/**',
+				  'css/**',
+				  'js/**',
+				  'lib/**',
+				  'images/**',				  
+				  'plugin/**',
+				  '**.md'
+			  ],
+			  dest: 'build',
+			  expand: true
+			},
+		},
+		clean: {
+			build: {
+			  src: [ 'build' ]
+			},
+		},
 
 		uglify: {
 			options: {
@@ -163,9 +185,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-retire' );
 	grunt.loadNpmTasks( 'grunt-sass' );
 	grunt.loadNpmTasks( 'grunt-zip' );
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 	
 	// Default task
-	grunt.registerTask( 'default', [ 'css', 'js' ] );
+	grunt.registerTask( 'default', [ 'css', 'js', 'clean', 'copy' ] );
 
 	// JS task
 	grunt.registerTask( 'js', [ 'jshint', 'uglify', 'qunit' ] );
