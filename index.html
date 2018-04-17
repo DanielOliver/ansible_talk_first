@@ -98,6 +98,9 @@
                     <li>
                         <p>We have a million servers in each environment.</p>
                     </li>
+                    <li>
+                        <p>Wait, whose server is this?!?!</p>
+                    </li>
                 </ul>
                 <aside class="notes">
                     Do you even have documentation?
@@ -112,10 +115,11 @@
                 <p>How to create the server from scratch including all installed programs, security settings, configuration,
                     etc.
                 </p>
+                <br/>
+                <p>For the most part, we do this.</p>
                 <div class="fragment fade-in">
-                    <br/>
                     <p>
-                        <b>But then we ask, is every server matching this documentation?</b>
+                        <b>But then we ask, is every server documented?</b>
                     </p>
                     <img data-src="assets/noidea.gif" height="378" width="506">
                 </div>
@@ -137,7 +141,8 @@
                     <img data-src="assets/noidea2.gif" height="394" width="700">
                 </div>
                 <aside class="notes">
-                    Transferring changes made in each environment is not always part of the visible plan.
+                    The people who have been there a while usually respond like this.
+                    <br/> Transferring changes made in each environment is not always part of the visible plan.
                 </aside>
             </section>
 
@@ -168,13 +173,19 @@
                 </aside>
             </section>
 
+            <section>
+                <h3>How do we solve the age-old problem of managing servers efficiently, consistently, and repeatably?</h3>
+                <aside class="notes">
+                    Fear not, I have a solution.
+                </aside>
+            </section>
+
             <!-- BEGIN INFRASTRUCTURE AS CODE -->
 
             <section data-background="#eAeAeA">
                 <h1>Infrastructure AS Code</h1>
-                <p>
-                    <b>A new phrase, for old stuff.</b>
-                </p>
+                <p>Because not everything is a container yet.</p>
+                <p>And even containers have to run on a server.</p>
                 <aside class="notes">
                     This may seem crazy, but consider that we can script database changes. That's effectively Infrastructure As Code.
                     <br/> Software Developers break things. The Operations team values stability. There's a reason Operations
@@ -207,6 +218,29 @@
                 </ul>
                 <aside class="notes">
                     I don't have a slide for the downsides. The most I could say is that it's another thing to learn.
+                </aside>
+            </section>
+
+            <section>
+                <h3>Tool Options</h3>
+                <ul>
+                    <li>
+                        <p>Chef</p>
+                    </li>
+                    <li>
+                        <p>Puppet</p>
+                    </li>
+                    <li>
+                        <p>Ansible</p>
+                    </li>
+                    <li>
+                        <p>Vagrant</p>
+                    </li>
+                    <li>
+                        <p>and many others!</p>
+                    </li>
+                </ul>
+                <aside class="notes">
                 </aside>
             </section>
 
