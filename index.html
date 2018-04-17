@@ -399,6 +399,17 @@ ansiblevm3 | SUCCESS => {
             </section>
 
             <section>
+                <h3>Reason for Idempotent</h3>
+                <p>Idempotent commands are as close to declaring the state of the server as we can get.
+                    <br/>
+                    <br/>Servers are rather like databases, being transformed in-place.
+                </p>
+                <pre class="sql"><code style="max-height:100%" data-trim data-noescape>CREATE OR ALTER PROCEDURE</code></pre>
+                <aside class="notes">
+                </aside>
+            </section>
+
+            <section>
                 <h3>Playbook</h3>
                 <p>Ansible can combine commands into a playbook.</p>
                 <pre class="yaml"><code style="max-height:100%" data-trim data-noescape>---
