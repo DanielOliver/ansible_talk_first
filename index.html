@@ -259,18 +259,16 @@
             </section>
 
             <section>
-                <h3>It's demo time!</h3>
+                <h3>All code samples is a demo.</h3>
                 <br/>
-                <p> Actually, everything is pre-recorded for my sanity with the following 3 VMs</p>
-                <pre class="powershell">
-                    <code style="max-height:100%" data-trim data-noescape>PS C:\Users\Daniel> az network public-ip list --query '[].{IPAddress: ipAddress, FQDN: dnsSettings.fqdn, Name: name}' --output table
+                <p> Everything was tested with the following 3 VMs</p>
+                <pre class="powershell"><code style="max-height:100%" data-trim data-noescape>PS C:\Users\Daniel> az network public-ip list --query '[].{IPAddress: ipAddress, FQDN: dnsSettings.fqdn, Name: name}' --output table
 IPAddress      FQDN                                  Name
 -------------  ------------------------------------  ------------------
 13.90.245.94   ansiblevm1.eastus.cloudapp.azure.com  ansiblevm1PublicIP
 52.168.111.32  ansiblevm2.eastus.cloudapp.azure.com  ansiblevm2PublicIP
 13.90.251.252  ansiblevm3.eastus.cloudapp.azure.com  ansiblevm3PublicIP
-PS C:\Users\Daniel></code>
-                </pre>
+PS C:\Users\Daniel></code></pre>
                 <p>
                     <i>Note: these VMs shouldn't be publicly accessible.</i>
                 </p>
@@ -283,8 +281,7 @@ PS C:\Users\Daniel></code>
             <section>
                 <h3>Ad-Hoc Command</h3>
                 <p>ansible all -m ping</p>
-                <pre class="bash">
-                        <code style="max-height:100%" data-trim data-noescape>$ ansible all -m ping
+                <pre class="bash"><code style="max-height:100%" data-trim data-noescape>$ ansible all -m ping
 ansiblevm1 | SUCCESS => {
     "changed": false,
     "ping": "pong"
@@ -296,8 +293,7 @@ ansiblevm2 | SUCCESS => {
 ansiblevm3 | SUCCESS => {
     "changed": false,
     "ping": "pong"
-}</code>
-                </pre>
+}</code></pre>
                 <p>Ansible provides wrappers to common functionality in the form of modules.</p>
                 <aside class="notes">
                     Ansible also supports ad-hoc commands for management of servers. Because sometimes you got to.
@@ -306,12 +302,11 @@ ansiblevm3 | SUCCESS => {
 
             <section>
                 <h3>Ad-Hoc Command Explained - Part 1.</h3>
+                <pre class="bash"><code style="max-height:100%" data-trim data-noescape>$ ansible all -m ping</code></pre>
                 <p>Ansible configuration includes an "inventory" of the servers.</p>
-                <pre class="ini">
-                    <code data-trim data-noescape>ansiblevm1   ansible_ssh_user=daniel   ansible_host=ansiblevm1.eastus.cloudapp.azure.com
+                <pre class="ini"><code data-trim data-noescape>ansiblevm1   ansible_ssh_user=daniel   ansible_host=ansiblevm1.eastus.cloudapp.azure.com
 ansiblevm2   ansible_ssh_user=daniel   ansible_host=ansiblevm2.eastus.cloudapp.azure.com
-ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.azure.com</code>
-                </pre>
+ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.azure.com</code></pre>
                 <p>Inventories can be dynamic too.</p>
                 <aside class="notes">
                     For demo purposes, this is a static inventory. And honestly, static inventories usually suffice.
@@ -320,18 +315,15 @@ ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.a
 
             <section>
                 <h3>Ad-Hoc Command Explained - Part 2.</h3>
+                <pre class="bash"><code style="max-height:100%" data-trim data-noescape>$ ansible all -m ping</code></pre>
                 <p>Ansible connects using SSH, SCP, and SFTP.</p>
-                <p>An example from "ansible all -m ping" looks like this.</p>
-                <pre class="bash">
-                        <code data-trim data-noescape>ssh -i /mnt/c/Users/Daniel/.ssh/id_rsa -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no \
+                <p>An example from the above looks like this.</p>
+                <pre class="bash"><code data-trim data-noescape>ssh -i /mnt/c/Users/Daniel/.ssh/id_rsa -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no \
     -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no \
-    -o User=daniel -o ConnectTimeout=10 ansiblevm3.eastus.cloudapp.azure.com '/bin/sh -c '"'"'echo ~ &AMP;&AMP; sleep 0'"'"''</code>
-                </pre>
+    -o User=daniel -o ConnectTimeout=10 ansiblevm3.eastus.cloudapp.azure.com '/bin/sh -c '"'"'echo ~ &AMP;&AMP; sleep 0'"'"''</code></pre>
 
                 <p>Simplified</p>
-                <pre class="bash">
-                    <code data-trim data-noescape>ssh -i /mnt/c/Users/Daniel/.ssh/id_rsa daniel@ansiblevm1.eastus.cloudapp.azure.com</code>
-                </pre>
+                <pre class="bash"><code data-trim data-noescape>ssh -i /mnt/c/Users/Daniel/.ssh/id_rsa daniel@ansiblevm1.eastus.cloudapp.azure.com</code></pre>
                 <aside class="notes">
                     All Ansible needs is Python installed, and access.
                 </aside>
@@ -339,15 +331,14 @@ ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.a
 
             <section>
                 <h3>Ad-Hoc Command Explained - Part 3.</h3>
+                <pre class="bash"><code style="max-height:100%" data-trim data-noescape>$ ansible all -m ping</code></pre>
                 <p>Ansible configuration is simple to start with.</p>
-                <pre class="ini">
-                        <code data-trim data-noescape>[ssh_connection]
+                <pre class="ini"><code data-trim data-noescape>[ssh_connection]
 ssh_args = -i "/mnt/c/Users/Daniel/.ssh/id_rsa"
 
 [defaults]
 inventory = hosts
-host_key_checking = False</code>
-                    </pre>
+host_key_checking = False</code></pre>
                 <p>
                     <i>Note: "host_key_checking = False" may not be a great idea.</i>
                 </p>
@@ -359,19 +350,17 @@ host_key_checking = False</code>
 
             <section>
                 <h3>Ad-Hoc Command Explained - Part 4.</h3>
-                <p>ansible all -m ping</p>
+                <pre class="bash"><code style="max-height:100%" data-trim data-noescape>$ ansible all -m ping</code></pre>
                 <ul>
                     <li>"ansible" = command</li>
                     <li>"all" = servers in inventory to run command against</li>
                     <li>"-m" = Ansible module flag</li>
                     <li>"ping" = Ansible module</li>
                 </ul>
-                <pre class="bash">
-                            <code style="max-height:100%" data-trim data-noescape>ansiblevm1 | SUCCESS => {
+                <pre class="bash"><code style="max-height:100%" data-trim data-noescape>ansiblevm1 | SUCCESS => {
     "changed": false,
     "ping": "pong"
-}</code>
-                    </pre>
+}</code></pre>
                 <p>When each command runs, it's going to tell you if it changed anything on the server.</p>
                 <aside class="notes">
                     There are a lot of Ansible Modules.
@@ -382,8 +371,7 @@ host_key_checking = False</code>
                 <h3>Idempotent</h3>
                 <p>Infrastructure as Code declares the state we want to achieve.
                     <br/> Idempotent actions allow us to run the code many times with no harm.</p>
-                <pre class="bash">
-                                <code style="max-height:100%" data-trim data-noescape>$ ansible all -s -m user -a "name=johndoe state=absent"
+                <pre class="bash"><code style="max-height:100%" data-trim data-noescape>$ ansible all -s -m user -a "name=johndoe state=absent"
 ansiblevm1 | SUCCESS => {
     "changed": true,
     "force": false,
@@ -403,8 +391,7 @@ ansiblevm3 | SUCCESS => {
     "name": "johndoe",
     "state": "absent"
 }
-...</code>
-                        </pre>
+...</code></pre>
                 <aside class="notes">
                     Idempotent actions declare the state we want the server to be at.
                     <br/> In this case, we just want to remove the user John Doe.
@@ -414,8 +401,7 @@ ansiblevm3 | SUCCESS => {
             <section>
                 <h3>Playbook</h3>
                 <p>Ansible can combine commands into a playbook.</p>
-                <pre class="yaml">
-                                    <code style="max-height:100%" data-trim data-noescape>---
+                <pre class="yaml"><code style="max-height:100%" data-trim data-noescape>---
 - hosts: all  # The servers from the inventory.
   tasks: 
     # Idempotent Task.
@@ -428,8 +414,7 @@ ansiblevm3 | SUCCESS => {
     - name: Runs apt-get update, if last run more than one hour ago.
       apt: 
         update_cache: yes
-        cache_valid_time: 3600</code>
-                    </pre>
+        cache_valid_time: 3600</code></pre>
                 <p>Notice that not all commands are Idempotent.</p>
                 <aside class="notes">
                     Ansible Playbooks are not only Idempotent, but also a sequence of commands.
@@ -438,8 +423,7 @@ ansiblevm3 | SUCCESS => {
 
             <section>
                 <h3>Example Ansible Playbook Run</h3>
-                <pre class="bash">
-                    <code style="max-height:100%" data-trim data-noescape>$ ansible-playbook -s dotnet-playbook.yml
+                <pre class="bash"><code style="max-height:100%" data-trim data-noescape>$ ansible-playbook -s dotnet-playbook.yml
 PLAY [all] *************************************************************************************************************************************************************************
 TASK [Gathering Facts] *************************************************************************************************************************************************************
 ok: [ansiblevm1]
@@ -460,8 +444,7 @@ TASK [dotnet-sdk-2.1.4 is present.] ********************************************
 ok: [ansiblevm1]
 
 PLAY RECAP *************************************************************************************************************************************************************************
-ansiblevm1                 : ok=5    changed=0    unreachable=0    failed=0</code>
-                </pre>
+ansiblevm1                 : ok=5    changed=0    unreachable=0    failed=0</code></pre>
                 <aside class="notes">
                     This playbook was run with just one Server.
                     <br/> These are the steps to install .NET Core on Ubuntu 16.04.
@@ -470,8 +453,7 @@ ansiblevm1                 : ok=5    changed=0    unreachable=0    failed=0</cod
 
             <section>
                 <h3>.NET Core Ubuntu Install playbook</h3>
-                <pre class="yaml">
-                    <code style="max-height:100%" data-trim data-noescape>---
+                <pre class="yaml"><code style="max-height:100%" data-trim data-noescape>---
 - hosts: ansiblevm1
   tasks:
   - name: Is Microsoft.gpg there?
@@ -494,8 +476,7 @@ ansiblevm1                 : ok=5    changed=0    unreachable=0    failed=0</cod
   - name: dotnet-sdk-2.1.4 is present.
     apt:
       name: dotnet-sdk-2.1.4
-      state: present</code>
-                </pre>
+      state: present</code></pre>
                 <aside class="notes">
                     There's a lot going on here. I removed whitespace so it fits on the screen.
                     <br/> Notice the bash commands.
@@ -527,8 +508,7 @@ ansiblevm1                 : ok=5    changed=0    unreachable=0    failed=0</cod
                 <p>So far, I've shown how to install programs with Ansible.
                     <br/> Checking dotnet version with ad-hoc commands shows this:
                 </p>
-                <pre class="bash">
-                    <code style="max-height:100%" data-trim data-noescape>$ ansible all -m shell -a "dotnet --version"
+                <pre class="bash"><code style="max-height:100%" data-trim data-noescape>$ ansible all -m shell -a "dotnet --version"
 ansiblevm1 | SUCCESS | rc=0 >>
 2.1.4
 
@@ -536,8 +516,7 @@ ansiblevm3 | SUCCESS | rc=0 >>
 2.1.4
 
 ansiblevm2 | SUCCESS | rc=0 >>
-2.1.4</code>
-                </pre>
+2.1.4</code></pre>
                 <p>Ad-hoc commands are useful for gathering information on existing servers.
                 </p>
                 <aside class="notes">
@@ -577,26 +556,22 @@ ansiblevm2 | SUCCESS | rc=0 >>
             <section>
                 <h2>Variables in template commands</h2>
                 <p>Putting a line in a file with a template</p>
-                <pre class="bash">
-                    <code style="max-height:100%" data-trim data-noescape>$ ansible all -m lineinfile -a "path=~/test.txt state=present create=true line=\"{{ inventory_hostname }} is the 
+                <pre class="bash"><code style="max-height:100%" data-trim data-noescape>$ ansible all -m lineinfile -a "path=~/test.txt state=present create=true line=\"{{ inventory_hostname }} is the 
 name of this server in the inventory file\""
 ansiblevm3 | SUCCESS => {
     "backup": "",
     "changed": true,
     "msg": "line added"
 }
-...</code>
-                </pre>
+...</code></pre>
                 <p>Reading the line from that file</p>
-                <pre class="bash">
-                        <code style="max-height:100%" data-trim data-noescape>$ ansible all -m shell -a "cat ~/test.txt"
+                <pre class="bash"><code style="max-height:100%" data-trim data-noescape>$ ansible all -m shell -a "cat ~/test.txt"
 ansiblevm1 | SUCCESS | rc=0 >>
 ansiblevm1 is the name of this server in the inventory file
 
 ansiblevm2 | SUCCESS | rc=0 >>
 ansiblevm2 is the name of this server in the inventory file
-...</code>
-                </pre>
+...</code></pre>
                 <aside class="notes">
                     Ansible uses the Python templating library "Jinja" to template files and strings.
                 </aside>
@@ -620,18 +595,14 @@ ansiblevm2 is the name of this server in the inventory file
                 <p>So far you've seen "all" or the "ansiblevm1" virtual machine name used to identify servers in ad-hoc commands
                     and playbooks.</p>
                 <p>Inventory can also be grouped for conenvience.</p>
-                <pre class="ini">
-                        <code data-trim data-noescape>[DBServer]
+                <pre class="ini"><code data-trim data-noescape>[DBServer]
 ansiblevm1   ansible_ssh_user=daniel   ansible_host=ansiblevm1.eastus.cloudapp.azure.com
 [WebServers]
 ansiblevm2   ansible_ssh_user=daniel   ansible_host=ansiblevm2.eastus.cloudapp.azure.com
-ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.azure.com</code>
-                </pre>
+ansiblevm3   ansible_ssh_user=daniel   ansible_host=ansiblevm3.eastus.cloudapp.azure.com</code></pre>
                 <p>Environments can be groups in inventory.
                     <br/> Or, make separate inventory files for each environment.</p>
-                <pre class="ini">
-                        <code data-trim data-noescape>ansible WebServers -m ping</code>
-                </pre>
+                <pre class="ini"><code data-trim data-noescape>ansible WebServers -m ping</code></pre>
                 <aside class="notes">
                     Your choice on how to separate Environments: separate files or groups.
                 </aside>
